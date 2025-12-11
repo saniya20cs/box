@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>box moving game</title>
+    <style>
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin-top: 80vh;
+            background-color: lightseagreen;
+        }
+        #box{
+            width: 80px;
+            height: 80px;
+            background: rgb(247, 10, 191);
+            cursor: pointer;
+            border-radius: 50%;
+            position: absolute;
+            background: url("ball.jpg")center/cover no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <h2>Click the moving box</h2>
+    <p>Score: <span id="score">0</span></p>
+    <div id="box"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            let score=0;
+
+            function moveBox(){
+                let x = Math.random()*($(window).width() - 100);
+                let y = Math.random()*($(window).height() - 150);
+
+                $("#box").css({
+                    left: x + "px",
+                    top: y + "px"
+
+                });
+            }
+
+            setInterval(moveBox, 800);
+
+            $("#box").click(function(){
+                score++;
+                $("#score").text(score);
+                moveBox();
+            });
+            moveBox();
+        });
+
+    </script>
+    
+</body>
+</html>
